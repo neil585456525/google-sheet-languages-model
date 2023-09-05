@@ -17,6 +17,7 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.9",
     "@types/node": "^20.5.9",
+    "dotenv": "^16.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
