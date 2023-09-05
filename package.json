@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/neil585456525/i18n-google-sheet-example.git",
-  "author": "sam585456525 <sam585456525@gmail.com>",
+  "author": "neil585456525 <neil585456525@gmail.com>",
   "type": "module",
   "license": "MIT",
   "scripts": {
