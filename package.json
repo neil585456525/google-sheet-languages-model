@@ -1,0 +1,23 @@
+{
+  "name": "i18n-google-sheet-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/neil585456525/i18n-google-sheet-example.git",
+  "author": "sam585456525 <sam585456525@gmail.com>",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "i18n:pull": "ts-node --esm example/pull.ts",
+    "i18n:push": "ts-node --esm example/push.ts"
+  },
+  "dependencies": {
+    "googleapis": "^126.0.1",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.9",
+    "@types/node": "^20.5.9",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
