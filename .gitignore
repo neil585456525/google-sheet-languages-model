@@ -3,3 +3,4 @@ dist
 credentials.json
 *.log
 .env
+tmp

@@ -11,35 +11,36 @@ export type Languages = readonly string[];
 
 type LanguagesContentType = "nest" | "flat";
 
-export type FlatLanguagesContent<TLanguages extends Languages> = Record<
-  TLanguages[number],
-  { [key: string]: string }
->;
+export type FlatLanguagesContent<TLanguages extends Languages = Languages> =
+  Record<TLanguages[number], { [key: string]: string }>;
 
-export type NestLanguagesContent<TLanguages extends Languages> = Record<
-  TLanguages[number],
-  { [key: string]: string | { [key: string]: string } }
->;
+export type NestLanguagesContent<TLanguages extends Languages = Languages> =
+  Record<
+    TLanguages[number],
+    {
+      [key: string]:
+        | string
+        | { [key: string]: string | { [key: string]: string } };
+    }
+  >;
 
-export type LanguagesContent =
-  | FlatLanguagesContent<Languages>
-  | NestLanguagesContent<Languages>;
+export type LanguagesContent = FlatLanguagesContent | NestLanguagesContent;
 
-export interface LanguagesModelConfig<TLanguages extends Languages> {
+export interface LanguagesModelConfig<
+  TLanguages extends Languages = Languages
+> {
   languages: TLanguages;
   languagesContent: LanguagesContent;
-  type: LanguagesContentType;
 }
 
 /**
  * @description Handing i18n definition files in local side, can load from or save to local folder.
  * Support two common structures of i18n files. Flat and nest.
  */
-export class LanguagesModel<TLanguages extends Languages> {
+export class LanguagesModel<TLanguages extends Languages = Languages> {
   static loadFromFolder<TLanguages extends Languages>(
     folderPath: string,
-    languages: TLanguages,
-    type: LanguagesContentType = "nest"
+    languages: TLanguages
   ) {
     const languagesContent: LanguagesContent = {};
     languages.forEach((langItem) => {
@@ -50,7 +51,6 @@ export class LanguagesModel<TLanguages extends Languages> {
     return new LanguagesModel<TLanguages>({
       languages,
       languagesContent,
-      type,
     });
   }
 
@@ -58,19 +58,8 @@ export class LanguagesModel<TLanguages extends Languages> {
   flatLanguagesContent: FlatLanguagesContent<TLanguages>;
   constructor(config: LanguagesModelConfig<TLanguages>) {
     this.languages = config.languages;
-    if (!config.languagesContent || !config.type)
-      throw new Error(
-        "LanguagesModelConfig.languagesContent and LanguagesModelConfig.type is required"
-      );
-    if (config.type === "flat") {
-      this.flatLanguagesContent =
-        config.languagesContent as FlatLanguagesContent<TLanguages>;
-      return;
-    }
 
-    this.flatLanguagesContent = this.nestToFlat(
-      config.languagesContent as NestLanguagesContent<TLanguages>
-    );
+    this.flatLanguagesContent = this.nestToFlat(config.languagesContent);
   }
 
   public getFlat() {
@@ -83,7 +72,7 @@ export class LanguagesModel<TLanguages extends Languages> {
 
   public saveToFolder(folderPath: string, type: LanguagesContentType = "nest") {
     if (!fs.existsSync(folderPath)) {
-      fs.mkdirSync(folderPath);
+      fs.mkdirSync(folderPath, { recursive: true });
     }
     this.languages.forEach((langItem) => {
       const langFilePath = `${folderPath}/${langItem}.json`;
@@ -92,12 +81,10 @@ export class LanguagesModel<TLanguages extends Languages> {
     });
   }
 
-  protected nestToFlat = (
-    nestLanguagesObj: NestLanguagesContent<TLanguages>
-  ) => {
+  protected nestToFlat = (languagesContent: LanguagesContent) => {
     const obj = {};
     this.languages.forEach((langItem) => {
-      obj[langItem] = this.flatten(nestLanguagesObj[langItem]);
+      obj[langItem] = this.flatten(languagesContent[langItem]);
     });
     return obj as FlatLanguagesContent<TLanguages>;
   };

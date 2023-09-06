@@ -7,6 +7,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "test": "vitest",
     "i18n:pull": "ts-node --esm example/pull.ts",
     "i18n:push": "ts-node --esm example/push.ts"
   },
@@ -19,6 +20,7 @@
     "@types/node": "^20.5.9",
     "dotenv": "^16.3.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.3"
   }
 }
