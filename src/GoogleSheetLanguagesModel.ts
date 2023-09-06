@@ -24,7 +24,7 @@ export class GoogleSheetLanguagesModel {
   }
 
   public async loadFromGoogleSheet(sheetTitle: string, languages: Languages) {
-    const sheetValue = await this._getSheetValueFromGoogleSheet(sheetTitle);
+    const sheetValue = await this.getSheetValueFromGoogleSheet(sheetTitle);
 
     return this.sheetValueToLanguageModel(sheetValue, languages);
   }
@@ -35,10 +35,10 @@ export class GoogleSheetLanguagesModel {
   ) {
     const sheetValue = this.languagesModelToSheetValue(languagesModel);
 
-    await this._updateSheetValueToGoogleSheet(sheetTitle, sheetValue);
+    await this.updateSheetValueToGoogleSheet(sheetTitle, sheetValue);
   }
 
-  private async _getSheetValueFromGoogleSheet(sheetTitle: string) {
+  public async getSheetValueFromGoogleSheet(sheetTitle: string) {
     const sheet = await this.googleSheet.spreadsheets.values.get({
       spreadsheetId: this.sheetId,
       range: `${sheetTitle}`,
@@ -46,7 +46,7 @@ export class GoogleSheetLanguagesModel {
     return sheet.data.values;
   }
 
-  private async _updateSheetValueToGoogleSheet(
+  public async updateSheetValueToGoogleSheet(
     sheetTitle: string,
     sheetValue: SheetValue
   ) {

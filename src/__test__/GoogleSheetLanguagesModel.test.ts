@@ -54,7 +54,7 @@ describe("GoogleSheetLanguagesModel.test", () => {
     });
 
     const spy = vi
-      .spyOn(googleSheetLanguagesModel as any, "_getSheetValueFromGoogleSheet")
+      .spyOn(googleSheetLanguagesModel, "getSheetValueFromGoogleSheet")
       .mockResolvedValue(sheetValueExample);
 
     const args: Parameters<
@@ -76,7 +76,7 @@ describe("GoogleSheetLanguagesModel.test", () => {
     });
 
     const spy = vi
-      .spyOn(googleSheetLanguagesModel as any, "_updateSheetValueToGoogleSheet")
+      .spyOn(googleSheetLanguagesModel, "updateSheetValueToGoogleSheet")
       .mockResolvedValue(undefined);
 
     const languagesModel = new LanguagesModel({
