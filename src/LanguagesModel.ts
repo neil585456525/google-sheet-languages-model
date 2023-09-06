@@ -31,6 +31,10 @@ export interface LanguagesModelConfig<TLanguages extends Languages> {
   type: LanguagesContentType;
 }
 
+/**
+ * @description Handing i18n definition files in local side, can load from or save to local folder.
+ * Support two common structures of i18n files. Flat and nest.
+ */
 export class LanguagesModel<TLanguages extends Languages> {
   static loadFromFolder<TLanguages extends Languages>(
     folderPath: string,
