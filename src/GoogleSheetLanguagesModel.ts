@@ -63,6 +63,10 @@ export class GoogleSheetLanguagesModel {
   public languagesModelToSheetValue(languagesModel: LanguagesModel<Languages>) {
     const contentRaws: string[][] = [["key", ...languagesModel.languages]];
 
+    // [
+    //   ["key", "en", "zh", "ja", "fr", "es"],
+    // ]
+
     const mainLangData =
       languagesModel.flatLanguagesContent[languagesModel.languages[0]];
 
@@ -73,12 +77,21 @@ export class GoogleSheetLanguagesModel {
       languagesModel.languages.slice(1).forEach((anotherLang) => {
         const field =
           languagesModel.flatLanguagesContent[anotherLang][mainRowKey];
-        if (!field) return;
+        if (!field) {
+          tmpRaw.push("");
+          return;
+        }
         tmpRaw.push(field);
       });
       contentRaws.push(tmpRaw);
       tmpRaw = [];
     }
+
+    // [
+    //   ["key", "en", "zh", "ja", "fr", "es"],
+    //   ["user.name", "name", "名字", "名前", "nom", "nombre"],
+    //   ["user.age", "age", "", "", "âge", "edad"],
+    // ]
 
     return contentRaws;
   }

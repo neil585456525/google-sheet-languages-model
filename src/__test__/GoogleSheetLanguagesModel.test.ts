@@ -11,8 +11,8 @@ const sheetValueExample = [
   ["key", "en", "fr", "es"],
   ["name", "name", "nom", "nombre"],
   ["job", "job", "emploi", "trabajo"],
-  ["nest.object.example1", "example1"],
-  ["nest.object.example2", "example2"],
+  ["nest.object.example1", "example1", "", ""],
+  ["nest.object.example2", "example2", "", ""],
 ];
 
 describe("GoogleSheetLanguagesModel.test", () => {
