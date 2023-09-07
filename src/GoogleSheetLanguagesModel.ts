@@ -43,7 +43,7 @@ export class GoogleSheetLanguagesModel {
       spreadsheetId: this.sheetId,
       range: `${sheetTitle}`,
     });
-    return sheet.data.values;
+    return sheet.data.values as string[][];
   }
 
   public async updateSheetValueToGoogleSheet(
@@ -87,6 +87,12 @@ export class GoogleSheetLanguagesModel {
     sheetValue: SheetValue,
     languages: Languages
   ) {
+    // [
+    //   ["key", "en", "zh", "ja", "fr", "es"],
+    //   ["user.name", "name", "名字", "名前", "nom", "nombre"],
+    //   ["user.age", "age", "年龄", "年齢", "âge", "edad"],
+    // ]
+
     const [_, ...contentRowsData] = sheetValue;
 
     const contentRows = contentRowsData.map((rowItem) => {
@@ -94,14 +100,32 @@ export class GoogleSheetLanguagesModel {
       return { key, translationRows };
     });
 
+    // [
+    //   {
+    //     key: 'user.name',
+    //     translationRows: [ 'name', '名字', '名前', 'nom', 'nombre' ]
+    //   },
+    //   {
+    //     key: 'user.age',
+    //     translationRows: [ 'age', '年龄', '年齢', 'âge', 'edad' ]
+    //   }
+    // ]
+
     const flatLanguagesContent: FlatLanguagesContent<Languages> = {};
 
     languages.forEach((language) => {
       flatLanguagesContent[language] = {};
     });
 
+    // {
+    //   en:{},
+    //   zh:{},
+    //   ja:{},
+    //   fr:{},
+    //   es:{},
+    // }
+
     contentRows.forEach((rowItem) => {
-      // ex. rowItem = ['user.name','name','名字',...]
       const { key, translationRows } = rowItem;
 
       languages.forEach((language, index) => {
@@ -109,6 +133,17 @@ export class GoogleSheetLanguagesModel {
         flatLanguagesContent[language][`${key}`] = translationRows[index];
       });
     });
+
+    // {
+    //   en: {
+    //     "user.name": "name",
+    //     "user.age": "age",
+    //   },
+    //   zh: {
+    //     "user.name": "名字",
+    //     "user.age": "年龄",
+    //   },
+    // }
 
     return new LanguagesModel({
       languages,

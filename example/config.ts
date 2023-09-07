@@ -12,6 +12,7 @@ const credentials = require("./credentials.json");
 export const SHEET_ID = process.env.SHEET_ID as string;
 
 export const languages = ["en", "zh", "ja", "fr", "es"] as const;
+// The same order as the sheet
 
 export const auth = new google.auth.GoogleAuth({
   credentials,

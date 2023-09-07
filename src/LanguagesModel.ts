@@ -56,6 +56,7 @@ export class LanguagesModel<TLanguages extends Languages = Languages> {
 
   languages: TLanguages;
   flatLanguagesContent: FlatLanguagesContent<TLanguages>;
+
   constructor(config: LanguagesModelConfig<TLanguages>) {
     this.languages = config.languages;
 
