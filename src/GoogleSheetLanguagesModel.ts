@@ -73,7 +73,10 @@ export class GoogleSheetLanguagesModel {
       languagesModel.languages.slice(1).forEach((anotherLang) => {
         const field =
           languagesModel.flatLanguagesContent[anotherLang][mainRowKey];
-        if (!field) return;
+        if (!field) {
+          tmpRaw.push("");
+          return;
+        }
         tmpRaw.push(field);
       });
       contentRaws.push(tmpRaw);
