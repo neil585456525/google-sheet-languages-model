@@ -1,0 +1,7 @@
+/src/
+/example/
+rollup.config.mjs
+.env
+env
+*.log
+tsconfig*

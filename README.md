@@ -6,6 +6,12 @@ This repo show that how to manage i18n with google sheet to get collaboration mo
 
 ## Setup
 
+### Installation
+
+```bash
+yarn add -D google-sheet-languages-model googleapis
+```
+
 ### Google Sheet API Authorization
 
 Recommend to use [Service Account](https://developers.google.com/workspace/guides/create-credentials#service-account) auth option to interact with google sheet api.

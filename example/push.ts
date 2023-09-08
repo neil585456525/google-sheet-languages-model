@@ -1,4 +1,4 @@
-import { GoogleSheetLanguagesModel } from "../src/index.ts";
+import { GoogleSheetLanguagesModel } from "google-sheet-languages-model";
 import { SHEET_ID, languages, auth, folderPath } from "./config.ts";
 
 const languagesModel = GoogleSheetLanguagesModel.loadFromFolder(

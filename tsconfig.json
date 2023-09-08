@@ -12,11 +12,10 @@
         "allowSyntheticDefaultImports": true,
         "noEmit": true,
         "allowImportingTsExtensions": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
     },
     "include": [
-        "src/**/*.ts",
-        "src/**/*.json",
-        "example/**/*.ts",
+        "src/**/*",
+        "example/**/*",
     ]
 }
