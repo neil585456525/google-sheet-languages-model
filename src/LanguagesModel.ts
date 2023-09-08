@@ -14,6 +14,17 @@ type LanguagesContentType = "nest" | "flat";
 export type FlatLanguagesContent<TLanguages extends Languages = Languages> =
   Record<TLanguages[number], { [key: string]: string }>;
 
+// {
+//   en: {
+//     "user.name": "name",
+//     "user.age": "age",
+//   },
+//   zh: {
+//     "user.name": "名字",
+//     "user.age": "年龄",
+//   },
+// }
+
 export type NestLanguagesContent<TLanguages extends Languages = Languages> =
   Record<
     TLanguages[number],
@@ -23,6 +34,21 @@ export type NestLanguagesContent<TLanguages extends Languages = Languages> =
         | { [key: string]: string | { [key: string]: string } };
     }
   >;
+
+// {
+//   en: {
+//     "user": {
+//       "name": "name",
+//       "age": "age",
+//     },
+//   },
+//   zh: {
+//     "user": {
+//       "name": "名字",
+//       "age": "年龄",
+//     },
+//   },
+// }
 
 export type LanguagesContent = FlatLanguagesContent | NestLanguagesContent;
 
