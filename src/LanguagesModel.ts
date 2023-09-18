@@ -81,13 +81,13 @@ export class LanguagesModel<TLanguages extends Languages = Languages> {
     });
   }
 
-  protected nestToFlat = (languagesContent: LanguagesContent) => {
+  protected nestToFlat(languagesContent: LanguagesContent) {
     const obj = {};
     this.languages.forEach((langItem) => {
       obj[langItem] = this.flatten(languagesContent[langItem]);
     });
     return obj as FlatLanguagesContent<TLanguages>;
-  };
+  }
 
   protected flatToNest(flatLanguagesObj: FlatLanguagesContent<TLanguages>) {
     const nestLanguagesObj = {} as NestLanguagesContent<TLanguages>;
