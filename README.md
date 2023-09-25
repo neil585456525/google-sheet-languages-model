@@ -1,4 +1,4 @@
-# i18n-google-sheet-example
+# Google Sheet Languages Model - i18n google sheet layer
 
 `google-sheet-languages-model` is a npm package that allows you to download/upload and parse internationalization (i18n) data from a Google Sheet to your local environment. This readme provides instructions on how to set up and use the `google-sheet-languages-model` package to manage your i18n data.
 
