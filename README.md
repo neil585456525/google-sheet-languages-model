@@ -89,6 +89,56 @@ The main classes and methods are documented in the source code provided. This wi
 
 Feel free to explore the provided code to better understand how to work with the `google-sheet-languages-model` package to manage your i18n data.
 
+## Data Structures for i18n File Data
+
+The `google-sheet-languages-model` package supports two different structures to describe i18n file data: `nest` (JS object style) and `flat` (key annotation style). Both styles serve to organize your internationalization data in a manner that best suits your project's needs.
+
+### 1. Nest (JS Object Style)
+
+In the `nest` structure, i18n data is organized in a nested JavaScript object format, where each key represents a nesting level. This structure is intuitive and easy to navigate, making it a good choice for projects with a hierarchical data organization.
+
+Example:
+
+```javascript
+{
+  "user": {
+    "name": "Name",
+    "age": "Age"
+  },
+  "messages": {
+    "welcome": "Welcome"
+  }
+}
+```
+
+### 2. Flat (Key Annotation Style)
+
+The `flat` structure, on the other hand, uses a single-level object with keys representing the path to the value in a dot notation. This structure is simple and often preferred in projects with a flat data organization.
+
+Example:
+
+```javascript
+{
+  "user.name": "Name",
+  "user.age": "Age",
+  "messages.welcome": "Welcome"
+}
+```
+
+You can choose either of these structures based on your project requirements. The method `languagesModel.saveToFolder(folderPath, structureStyle)` allows you to specify the structure style as `'nest'` or `'flat'` when saving the i18n data to a local folder. Similarly, when loading data from a folder using `GoogleSheetLanguagesModel.loadFromFolder(folderPath, languages, structureStyle)`, you can specify the structure style to match the organization of your i18n data.
+
+Example:
+
+```typescript
+// Saving data in nest structure
+languagesModel.saveToFolder(folderPath, "nest");
+
+// Or, saving data in flat structure
+languagesModel.saveToFolder(folderPath, "flat");
+```
+
+This flexibility allows you to work with the i18n data in a way that's most convenient and logical for your project's organization.
+
 ## Contributing
 
 If you encounter any issues or have features requests, feel free to open an issue or submit a pull request. Your contributions are welcome!
