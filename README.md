@@ -12,7 +12,7 @@ yarn add -D google-sheet-languages-model googleapis
 
 ## Authorization
 
-It's recommended to use the Service Account auth option to interact with the Google Sheets API. Follow these steps to set up the authorization:
+It's recommended to use the [Service Account](https://developers.google.com/workspace/guides/create-credentials#service-account) auth option to interact with the Google Sheets API. Follow these steps to set up the authorization:
 
 1. Enable the Google Sheets API permission for your project in the [Google Cloud Console](https://console.cloud.google.com/).
 2. Create a new Service Account or use an existing one, and add it as a editor to your working sheet.

@@ -1,6 +1,6 @@
 {
   "name": "google-sheet-languages-model",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "dist/index.js",
   "repository": "https://github.com/neil585456525/i18n-google-sheet-example.git",
   "author": "neil585456525 <neil585456525@gmail.com>",
